@@ -1,0 +1,182 @@
+═══════════════════════════════════════════════════════════════════════════
+                    CÀI ĐẶT TIKTOK ANALYZER TRÊN VPS UBUNTU
+                          HƯỚNG DẪN HOÀN CHỈNH
+═══════════════════════════════════════════════════════════════════════════
+
+🎯 BẠN CẦN: VPS Ubuntu mới (Google Cloud, AWS, DigitalOcean, v.v.)
+📦 REPOSITORY: https://github.com/minhhlki/tiktok-check
+
+═══════════════════════════════════════════════════════════════════════════
+                            CÁCH 1: TỰ ĐỘNG (NHANH NHẤT)
+═══════════════════════════════════════════════════════════════════════════
+
+1️⃣ SSH vào VPS:
+   ssh username@your-vps-ip
+
+2️⃣ Chạy 3 lệnh này:
+
+   git clone https://github.com/minhhlki/tiktok-check.git
+   cd tiktok-check
+   chmod +x setup_ubuntu.sh && ./setup_ubuntu.sh
+
+3️⃣ Chạy tool:
+
+   source venv/bin/activate
+   python tiktok_counter_improved.py https://www.tiktok.com/@username --save
+
+✅ XONG! Đơn giản vậy thôi!
+
+═══════════════════════════════════════════════════════════════════════════
+                            CÁCH 2: THỦ CÔNG (CHI TIẾT)
+═══════════════════════════════════════════════════════════════════════════
+
+📝 Xem file: SETUP_VPS_UBUNTU.md
+   - Hướng dẫn từng bước chi tiết
+   - Troubleshooting
+   - Tips & tricks
+   - Google Cloud specific instructions
+
+Hoặc:
+
+📝 Xem file: VPS_QUICKSTART.md
+   - Hướng dẫn nhanh gọn
+   - Các lệnh cơ bản
+   - Download kết quả
+   - Setup cron job
+
+═══════════════════════════════════════════════════════════════════════════
+                    SAU KHI CÀI XONG - SỬ DỤNG THẾ NÀO?
+═══════════════════════════════════════════════════════════════════════════
+
+🔄 MỖI LẦN CHẠY (sau khi reboot hoặc mở terminal mới):
+
+   cd ~/tiktok-check
+   source venv/bin/activate
+
+🚀 CHẠY TOOL:
+
+   # Phiên bản improved (chính xác hơn - KHUYÊN DÙNG)
+   python tiktok_counter_improved.py https://www.tiktok.com/@username --save
+
+   # Phiên bản thường (nhiều options hơn)
+   python tiktok_counter.py https://www.tiktok.com/@username --save-json --save-csv
+
+   # Hoặc dùng helper script
+   ./run_tiktok_improved.sh https://www.tiktok.com/@username --save
+
+📥 DOWNLOAD KẾT QUẢ (từ máy local):
+
+   # Download JSON
+   scp username@vps-ip:~/tiktok-check/*.json ./
+
+   # Download CSV
+   scp username@vps-ip:~/tiktok-check/*.csv ./
+
+   # Download tất cả
+   scp username@vps-ip:~/tiktok-check/*.{json,csv} ./
+
+═══════════════════════════════════════════════════════════════════════════
+                        CÁC FILE HƯỚNG DẪN ĐÃ TẠO
+═══════════════════════════════════════════════════════════════════════════
+
+📄 VPS_QUICKSTART.md         - Quickstart cho VPS (ĐỌC FILE NÀY TRƯỚC!)
+📄 SETUP_VPS_UBUNTU.md       - Hướng dẫn chi tiết từng bước
+📄 setup_ubuntu.sh           - Script tự động cài đặt
+📄 README.md                 - Tài liệu chính của tool
+📄 HUONG_DAN.txt             - Hướng dẫn tiếng Việt
+📄 FIX_VIEW_ACCURACY.md      - Giải thích về độ chính xác view
+📄 IMPROVEMENTS.md           - Danh sách cải tiến
+
+═══════════════════════════════════════════════════════════════════════════
+                        TROUBLESHOOTING - LỖI THƯỜNG GẶP
+═══════════════════════════════════════════════════════════════════════════
+
+❌ Lỗi: "command not found"
+   ✅ Chạy: source venv/bin/activate
+
+❌ Lỗi: "Could not find browser"
+   ✅ Chạy: playwright install chromium && playwright install-deps chromium
+
+❌ Lỗi: "Permission denied"
+   ✅ Chạy: chmod +x setup_ubuntu.sh
+         hoặc: sudo chown -R $USER:$USER ~/tiktok-check
+
+❌ Lỗi: "Out of memory"
+   ✅ Tạo swap: sudo fallocate -l 2G /swapfile
+                sudo chmod 600 /swapfile
+                sudo mkswap /swapfile
+                sudo swapon /swapfile
+
+❌ Lỗi: "Timeout" khi scrape
+   ✅ Tăng timeout trong code hoặc dùng VPN
+
+═══════════════════════════════════════════════════════════════════════════
+                        CHẠY TỰ ĐỘNG ĐỊNH KỲ (OPTIONAL)
+═══════════════════════════════════════════════════════════════════════════
+
+1️⃣ Tạo script:
+   nano ~/tiktok-check/auto_run.sh
+
+   Nội dung:
+   #!/bin/bash
+   cd ~/tiktok-check
+   source venv/bin/activate
+   python tiktok_counter_improved.py https://www.tiktok.com/@YOUR_CHANNEL --save
+
+2️⃣ Cho phép execute:
+   chmod +x ~/tiktok-check/auto_run.sh
+
+3️⃣ Setup cron (chạy mỗi ngày 3h sáng):
+   crontab -e
+   
+   Thêm dòng:
+   0 3 * * * /home/username/tiktok-check/auto_run.sh >> /home/username/tiktok-check/auto.log 2>&1
+
+═══════════════════════════════════════════════════════════════════════════
+                            CHECKLIST HOÀN THÀNH
+═══════════════════════════════════════════════════════════════════════════
+
+☐ Tạo VPS Ubuntu trên Google Cloud
+☐ SSH vào VPS thành công
+☐ Chạy setup_ubuntu.sh (hoặc cài thủ công)
+☐ Test chạy tool thành công
+☐ Biết cách activate venv mỗi lần dùng
+☐ Biết cách download kết quả về máy
+☐ (Optional) Setup cron job chạy tự động
+
+═══════════════════════════════════════════════════════════════════════════
+                              TIPS QUAN TRỌNG
+═══════════════════════════════════════════════════════════════════════════
+
+💡 Luôn nhớ activate venv:
+   cd ~/tiktok-check && source venv/bin/activate
+
+💡 Dùng phiên bản improved để có độ chính xác cao hơn:
+   python tiktok_counter_improved.py ...
+
+💡 Không chạy quá nhiều lần liên tục (tránh bị TikTok block):
+   - Đợi ít nhất 5-10 phút giữa mỗi lần
+   - Hoặc dùng VPN/proxy
+
+💡 Monitor tài nguyên:
+   free -h        # Check RAM
+   df -h          # Check disk
+   htop           # Check processes
+
+💡 Chạy trong background (không bị ngắt khi logout):
+   nohup python tiktok_counter_improved.py URL --save > output.log 2>&1 &
+
+═══════════════════════════════════════════════════════════════════════════
+                              LIÊN HỆ & HỖ TRỢ
+═══════════════════════════════════════════════════════════════════════════
+
+🔗 GitHub: https://github.com/minhhlki/tiktok-check
+📧 Issues: https://github.com/minhhlki/tiktok-check/issues
+📚 Docs: Xem các file .md trong repository
+
+═══════════════════════════════════════════════════════════════════════════
+
+                          🎉 CHÚC BẠN THÀNH CÔNG! 🎉
+
+═══════════════════════════════════════════════════════════════════════════
+

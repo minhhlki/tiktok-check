@@ -1,0 +1,181 @@
+═══════════════════════════════════════════════════════════════════════════
+                    HƯỚNG DẪN PUSH CODE LÊN GITHUB
+═══════════════════════════════════════════════════════════════════════════
+
+Repository: https://github.com/minhhlki/tiktok-check
+
+═══════════════════════════════════════════════════════════════════════════
+                        CÁC FILE CẦN PUSH (13 FILES)
+═══════════════════════════════════════════════════════════════════════════
+
+✅ Core files:
+   - tiktok_counter.py                 (phiên bản gốc - v2.0)
+   - tiktok_counter_improved.py        (phiên bản cải tiến view accuracy)
+   - requirements.txt                  (dependencies)
+
+✅ Documentation:
+   - README.md                         (tài liệu chính - đã update VPS)
+   - HUONG_DAN.txt                     (hướng dẫn nhanh tiếng Việt)
+   - IMPROVEMENTS.md                   (danh sách cải tiến v1 -> v2)
+   - FIX_VIEW_ACCURACY.md              (giải thích vấn đề view accuracy)
+
+✅ VPS Setup:
+   - VPS_QUICKSTART.md                 (quickstart cho VPS)
+   - SETUP_VPS_UBUNTU.md               (hướng dẫn chi tiết VPS)
+   - VPS_SETUP_SUMMARY.txt             (tổng kết VPS setup)
+   - setup_ubuntu.sh                   (script tự động cài đặt)
+
+✅ Examples & Tests:
+   - example_usage.py                  (ví dụ Python code)
+   - test_parsing.py                   (test độ chính xác parsing)
+
+═══════════════════════════════════════════════════════════════════════════
+                            LỆNH GIT CHO WINDOWS
+═══════════════════════════════════════════════════════════════════════════
+
+# 1. Mở Git Bash hoặc Command Prompt
+# 2. Di chuyển vào thư mục project
+cd C:\Users\HLC_2021\Downloads\tiktok
+
+# 3. Kiểm tra status
+git status
+
+# 4. Add tất cả files mới
+git add .
+
+# 5. Commit với message
+git commit -m "Add VPS setup guides and improved version
+
+- Add tiktok_counter_improved.py for better view accuracy
+- Add comprehensive VPS Ubuntu setup documentation
+- Add auto setup script (setup_ubuntu.sh)
+- Add VPS quickstart guide
+- Update README with VPS installation section
+- Add test script for parsing accuracy
+- Fix view accuracy issue with HTML attributes parsing
+- Version 2.0 - Enhanced Edition"
+
+# 6. Push lên GitHub
+git push origin main
+
+# Nếu branch là master thay vì main:
+git push origin master
+
+═══════════════════════════════════════════════════════════════════════════
+                        NẾU CHƯA SETUP GIT REPOSITORY
+═══════════════════════════════════════════════════════════════════════════
+
+# 1. Initialize git (nếu chưa có)
+git init
+
+# 2. Add remote repository
+git remote add origin https://github.com/minhhlki/tiktok-check.git
+
+# 3. Pull code hiện tại (nếu có)
+git pull origin main --allow-unrelated-histories
+
+# Hoặc với master branch:
+git pull origin master --allow-unrelated-histories
+
+# 4. Add files
+git add .
+
+# 5. Commit
+git commit -m "Add VPS setup guides and improved version"
+
+# 6. Push
+git push -u origin main
+
+# Hoặc:
+git push -u origin master
+
+═══════════════════════════════════════════════════════════════════════════
+                            NẾU BỊ LỖI PUSH
+═══════════════════════════════════════════════════════════════════════════
+
+❌ Lỗi: "Permission denied"
+   ✅ Setup SSH key hoặc dùng Personal Access Token:
+      git remote set-url origin https://YOUR_TOKEN@github.com/minhhlki/tiktok-check.git
+
+❌ Lỗi: "Updates were rejected"
+   ✅ Pull trước rồi push:
+      git pull origin main --rebase
+      git push origin main
+
+❌ Lỗi: "Your branch is behind"
+   ✅ Pull code mới nhất:
+      git pull origin main
+      git push origin main
+
+═══════════════════════════════════════════════════════════════════════════
+                        SAU KHI PUSH THÀNH CÔNG
+═══════════════════════════════════════════════════════════════════════════
+
+✅ Kiểm tra trên GitHub:
+   https://github.com/minhhlki/tiktok-check
+
+✅ Bạn sẽ thấy các files:
+   - All .py files
+   - All .md files  
+   - setup_ubuntu.sh
+   - requirements.txt
+   - etc.
+
+✅ README.md sẽ tự động hiển thị đẹp trên GitHub
+
+✅ Giờ bạn có thể clone trên VPS:
+   git clone https://github.com/minhhlki/tiktok-check.git
+
+═══════════════════════════════════════════════════════════════════════════
+                        TẠO RELEASE (OPTIONAL)
+═══════════════════════════════════════════════════════════════════════════
+
+Để tạo release v2.0.0 trên GitHub:
+
+1. Vào repository trên GitHub
+2. Click "Releases" ở sidebar bên phải
+3. Click "Create a new release"
+4. Tag: v2.0.0
+5. Title: Version 2.0.0 - Enhanced Edition
+6. Description:
+   
+   ## What's New
+   - Improved view count accuracy
+   - VPS Ubuntu auto-setup support
+   - Enhanced statistics and reporting
+   - CSV export support
+   - Better error handling
+   
+   ## Files
+   - `tiktok_counter_improved.py` - Recommended version
+   - `setup_ubuntu.sh` - Auto setup script for VPS
+   
+   See IMPROVEMENTS.md for full changelog.
+
+7. Click "Publish release"
+
+═══════════════════════════════════════════════════════════════════════════
+                            QUICK COPY-PASTE
+═══════════════════════════════════════════════════════════════════════════
+
+# CÁC LỆNH CHÍNH (copy toàn bộ):
+
+cd C:\Users\HLC_2021\Downloads\tiktok
+git add .
+git commit -m "Add VPS setup guides and improved version - v2.0"
+git push origin main
+
+# Nếu lỗi, thử:
+git pull origin main --rebase
+git push origin main
+
+═══════════════════════════════════════════════════════════════════════════
+
+                    🎉 SAU KHI PUSH XONG, DÙNG TRÊN VPS:
+
+                    git clone https://github.com/minhhlki/tiktok-check.git
+                    cd tiktok-check
+                    ./setup_ubuntu.sh
+
+═══════════════════════════════════════════════════════════════════════════
+
